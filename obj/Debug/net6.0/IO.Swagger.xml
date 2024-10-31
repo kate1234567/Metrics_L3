@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IO.Swagger</name>
+    </assembly>
+    <members>
+        <member name="T:IO.Swagger.Attributes.ValidateModelStateAttribute">
+            <summary>
+            Model state validation attribute
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Attributes.ValidateModelStateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Called before the action method is invoked
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:IO.Swagger.Controllers.MovieControllerApiController.AllMoviesGet">
+            <summary>
+            Получение списка всех фильмов в библиотеке
+            </summary>
+            <response code="200">Список фильмов</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.MovieControllerApiController.MovieMovieIdDelete(System.Nullable{System.Int32})">
+            <summary>
+            Удаление фильма по идентификатору
+            </summary>
+            <param name="movieId"></param>
+            <response code="200">Фильм успешно удалён</response>
+            <response code="500">Ошибка при удалении фильма</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.MovieControllerApiController.MovieMovieIdGet(System.Nullable{System.Int32})">
+            <summary>
+            Получение фильма по идентификатору
+            </summary>
+            <param name="movieId"></param>
+            <response code="200">Фильм с указанным идентификатором</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.MovieControllerApiController.MovieMovieIdPatch(IO.Swagger.Models.MoviePartialUpdate,System.Nullable{System.Int32})">
+            <summary>
+            Частичное обновление данных фильма по идентификатору
+            </summary>
+            <param name="body"></param>
+            <param name="movieId"></param>
+            <response code="200">Данные фильма успешно обновлены</response>
+            <response code="400">Некорректные данные для обновления</response>
+            <response code="404">Фильм не найден</response>
+            <response code="500">Ошибка при обновлении данных фильма</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.MovieControllerApiController.MoviesGet(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Получение списка фильмов с пагинацией
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <response code="200">Список фильмов</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.MovieControllerApiController.MoviesPost(IO.Swagger.Models.Movie)">
+            <summary>
+            Добавление нового фильма в библиотеку
+            </summary>
+            <param name="body"></param>
+            <response code="200">Фильм успешно добавлен</response>
+            <response code="500">Ошибка при добавлении фильма</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.MovieControllerApiController.MoviesPut(IO.Swagger.Models.Movie)">
+            <summary>
+            Обновление данных фильма
+            </summary>
+            <param name="body"></param>
+            <response code="200">Фильм успешно обновлён</response>
+            <response code="500">Ошибка при обновлении фильма</response>
+        </member>
+        <member name="T:IO.Swagger.Filters.BasePathFilter">
+            <summary>
+            BasePath Document Filter sets BasePath property of Swagger and removes it from the individual URL paths
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Filters.BasePathFilter.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="basePath">BasePath to remove from Operations</param>
+        </member>
+        <member name="P:IO.Swagger.Filters.BasePathFilter.BasePath">
+            <summary>
+            Gets the BasePath of the Swagger Doc
+            </summary>
+            <returns>The BasePath of the Swagger Doc</returns>
+        </member>
+        <member name="M:IO.Swagger.Filters.BasePathFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            Apply the filter
+            </summary>
+            <param name="swaggerDoc">OpenApiDocument</param>
+            <param name="context">FilterContext</param>
+        </member>
+        <member name="T:IO.Swagger.Filters.GeneratePathParamsValidationFilter">
+            <summary>
+            Path Parameter Validation Rules Filter
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Filters.GeneratePathParamsValidationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="operation">Operation</param>
+            <param name="context">OperationFilterContext</param>
+        </member>
+        <member name="T:IO.Swagger.Models.Movie">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Movie.Id">
+            <summary>
+            Gets or Sets Id
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Movie.Title">
+            <summary>
+            Gets or Sets Title
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Movie.Director">
+            <summary>
+            Gets or Sets Director
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Movie.ReleaseDate">
+            <summary>
+            Gets or Sets ReleaseDate
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Movie.Genre">
+            <summary>
+            Gets or Sets Genre
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Movie.Duration">
+            <summary>
+            Gets or Sets Duration
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.Movie.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Movie.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Movie.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Movie.Equals(IO.Swagger.Models.Movie)">
+            <summary>
+            Returns true if Movie instances are equal
+            </summary>
+            <param name="other">Instance of Movie to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Movie.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.MoviePartialUpdate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.MoviePartialUpdate.Title">
+            <summary>
+            Gets or Sets Title
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.MoviePartialUpdate.Director">
+            <summary>
+            Gets or Sets Director
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.MoviePartialUpdate.ReleaseDate">
+            <summary>
+            Gets or Sets ReleaseDate
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.MoviePartialUpdate.Genre">
+            <summary>
+            Gets or Sets Genre
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.MoviePartialUpdate.Duration">
+            <summary>
+            Gets or Sets Duration
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.MoviePartialUpdate.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.MoviePartialUpdate.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.MoviePartialUpdate.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.MoviePartialUpdate.Equals(IO.Swagger.Models.MoviePartialUpdate)">
+            <summary>
+            Returns true if MoviePartialUpdate instances are equal
+            </summary>
+            <param name="other">Instance of MoviePartialUpdate to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.MoviePartialUpdate.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Program">
+            <summary>
+            Program
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Program.Main(System.String[])">
+            <summary>
+            Main
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:IO.Swagger.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Create the web host builder.
+            </summary>
+            <param name="args"></param>
+            <returns>IWebHostBuilder</returns>
+        </member>
+        <member name="T:IO.Swagger.Services.MetricsService">
+            <summary>
+            Сервис для отслеживания метрик запросов, состояний сервера и времени выполнения.
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Services.MetricsService.TrackRequest(System.String,System.String)">
+            <summary>
+            Регистрация нового запроса.
+            </summary>
+            <param name="endpoint">Имя конечной точки запроса.</param>
+            <param name="method">Метод HTTP (GET, POST и т.д.).</param>
+        </member>
+        <member name="M:IO.Swagger.Services.MetricsService.TrackResponse(System.Int32)">
+            <summary>
+            Регистрация HTTP-ответа с определенным статусом.
+            </summary>
+            <param name="statusCode">Код статуса HTTP-ответа.</param>
+        </member>
+        <member name="M:IO.Swagger.Services.MetricsService.BeginConnection">
+            <summary>
+            Начало отслеживания активного соединения.
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Services.MetricsService.EndConnection">
+            <summary>
+            Завершение активного соединения.
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Services.MetricsService.TrackResponseTime(System.TimeSpan)">
+            <summary>
+            Регистрация времени выполнения запроса.
+            </summary>
+            <param name="elapsed">Время выполнения запроса.</param>
+        </member>
+        <member name="M:IO.Swagger.Services.MetricsService.TrackCpuUsage">
+            <summary>
+            Обновление показателя использования CPU.
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Services.MetricsService.GetCpuUsage">
+            <summary>
+            Получение текущего использования CPU.
+            </summary>
+        </member>
+        <member name="T:IO.Swagger.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+        </member>
+    </members>
+</doc>

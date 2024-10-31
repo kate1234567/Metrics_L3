@@ -1,0 +1,269 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Movie Library",
+    "description" : "Это пример сервиса управления фильмами, реализованного на основе спецификации OpenAPI 3.0.\n",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "tags" : [ {
+    "name" : "MovieController"
+  } ],
+  "paths" : {
+    "/allMovies" : {
+      "get" : {
+        "tags" : [ "MovieController" ],
+        "description" : "Получение списка всех фильмов в библиотеке",
+        "responses" : {
+          "200" : {
+            "description" : "Список фильмов",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Movie"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies" : {
+      "get" : {
+        "tags" : [ "MovieController" ],
+        "description" : "Получение списка фильмов с пагинацией",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Список фильмов",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Movie"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "MovieController" ],
+        "description" : "Обновление данных фильма",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Movie"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Фильм успешно обновлён"
+          },
+          "500" : {
+            "description" : "Ошибка при обновлении фильма"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "MovieController" ],
+        "description" : "Добавление нового фильма в библиотеку",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Movie"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Фильм успешно добавлен"
+          },
+          "500" : {
+            "description" : "Ошибка при добавлении фильма"
+          }
+        }
+      }
+    },
+    "/movie/{movieId}" : {
+      "get" : {
+        "tags" : [ "MovieController" ],
+        "description" : "Получение фильма по идентификатору",
+        "parameters" : [ {
+          "name" : "movieId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Фильм с указанным идентификатором",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Movie"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "MovieController" ],
+        "description" : "Удаление фильма по идентификатору",
+        "parameters" : [ {
+          "name" : "movieId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Фильм успешно удалён"
+          },
+          "500" : {
+            "description" : "Ошибка при удалении фильма"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "MovieController" ],
+        "description" : "Частичное обновление данных фильма по идентификатору",
+        "parameters" : [ {
+          "name" : "movieId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MoviePartialUpdate"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Данные фильма успешно обновлены"
+          },
+          "400" : {
+            "description" : "Некорректные данные для обновления"
+          },
+          "404" : {
+            "description" : "Фильм не найден"
+          },
+          "500" : {
+            "description" : "Ошибка при обновлении данных фильма"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Movie" : {
+        "required" : [ "director", "duration", "genre", "id", "releaseDate", "title" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "director" : {
+            "type" : "string"
+          },
+          "releaseDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "genre" : {
+            "type" : "string"
+          },
+          "duration" : {
+            "type" : "integer"
+          }
+        },
+        "example" : {
+          "duration" : 6,
+          "releaseDate" : "2000-01-23",
+          "director" : "director",
+          "genre" : "genre",
+          "id" : 0,
+          "title" : "title"
+        }
+      },
+      "MoviePartialUpdate" : {
+        "type" : "object",
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "director" : {
+            "type" : "string"
+          },
+          "releaseDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "genre" : {
+            "type" : "string"
+          },
+          "duration" : {
+            "type" : "integer"
+          }
+        }
+      }
+    }
+  }
+}
